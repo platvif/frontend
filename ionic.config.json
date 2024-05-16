@@ -1,0 +1,7 @@
+{
+  "name": "front_platvif",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
