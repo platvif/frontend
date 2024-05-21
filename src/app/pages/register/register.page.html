@@ -5,14 +5,16 @@
 </ion-header>
 
 
-<div class="form">
-  <input type="text" placeholder="Jhon">
-  <br>
-  <input type="text" placeholder="Doe">
-  <br>
-  <input type="text" placeholder="johndoe@mail.com">
-  <br>
-  <input type="text" placeholder="* * * *">
-
-  <ion-button expand="full" color="secondary" shape="round" fill="solid" class="btn-create" >Crear cuenta</ion-button>
-</div>
+<form class="form-data" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form">
+    <input type="text" placeholder="Jhon" formControlName="name">
+    <br>
+    <input type="text" placeholder="Doe" formControlName="lastname">
+    <br>
+    <input type="email" placeholder="johndoe@mail.com" formControlName="mail">
+    <br>
+    <input type="password" placeholder="* * * *" formControlName="pass">
+  
+    <ion-button expand="full" color="secondary" shape="round" fill="solid" class="btn-create" type="submit">Crear cuenta</ion-button>
+    </div>
+  </form>

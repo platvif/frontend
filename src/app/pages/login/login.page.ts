@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
+import { AuthenticationService } from 'src/app/assets/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  form!:FormGroup;
 
-  ngOnInit() {
-  }
+  constructor(
+    private authService: AuthenticationService,
+    private toastController: ToastController
+  ) {
+    this.form = new FormGroup({
+      mail: new FormControl('', [Validators.required, Validators.email]),
+      pass: new FormControl('', [Validators.required]),
+    })
+   }
 
+  ngOnInit() {}
+
+   async onSubmit() {
+    if (this.form?.valid) {
+      console.log('Formulario Valido: ', this.form?.value);
+      await this.authService.loginUser(this.form?.value).then(async res => {
+        console.log('Usuario Registrado exitosamente!', res);
+        const successToast = await this.toastController.create({
+          message: 'Su usuario se ha logueado con Exito! Bienvenido a PlatVif',
+          color: 'secondary',
+          duration: 2000,
+          animated: true,
+          header: 'Bienvenido a PlatVif!',
+          position: 'middle'
+        })
+        successToast.present();
+      }).catch(async error => {
+        console.error('No se ha podido realizar el login.', error);
+        const warningToast = await this.toastController.create({
+          message: 'No se ha podido hacer el logueo con exito, revise sus datos nuevamente... 😪',
+          color: 'danger',
+          duration: 3500,
+          animated: true,
+          header: 'Revise sus datos!',
+          position: 'middle'
+        })      
+        warningToast.present();
+      })
+    } else {
+      const warningToast = await this.toastController.create({
+        message: 'No se ha podido hacer el logueo con exito, revise sus datos nuevamente... 😪',
+        color: 'danger',
+        duration: 3500,
+        animated: true,
+        header: 'Revise sus datos!',
+        position: 'middle'
+      })      
+      warningToast.present();
+    }
+   }
 }

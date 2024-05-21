@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -8,7 +8,7 @@ import { RegisterPageRoutingModule } from './register-routing.module';
 
 import { RegisterPage } from './register.page';
 import { ComponentModule } from 'src/app/components/component.module';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,7 +17,9 @@ import { ComponentModule } from 'src/app/components/component.module';
     FormsModule,
     IonicModule,
     RegisterPageRoutingModule,
-    ComponentModule
+    ComponentModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   declarations: [RegisterPage]
 })
