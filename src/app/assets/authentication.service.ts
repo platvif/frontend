@@ -22,11 +22,6 @@ export class AuthenticationService {
   }
 
   async loginUser(body:any) {
-    await this.httpClient.post('http://localhost:3000/api/user/login', body).toPromise()
-    .then(res => {
-      console.log('Usuario Logueado con exito!', res);
-    }).catch((error) => {
-      console.error('No se pudo loguear al usuario', error);
-    })
+    return await this.httpClient.post('http://localhost:3000/api/user/login', body).toPromise();
   }
 }

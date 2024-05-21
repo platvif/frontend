@@ -27,10 +27,12 @@ export class LoginPage implements OnInit {
    async onSubmit() {
     if (this.form?.valid) {
       console.log('Formulario Valido: ', this.form?.value);
-      await this.authService.loginUser(this.form?.value).then(async res => {
-        console.log('Usuario Registrado exitosamente!', res);
+      try {
+        const login = await this.authService.loginUser(this.form?.value);
+        console.log('Usuario Registrado exitosamente!', login);
+        
         const successToast = await this.toastController.create({
-          message: 'Su usuario se ha logueado con Exito! Bienvenido a PlatVif',
+          message: 'Su usuario se ha logueado con Exito! Bienvenido a PlatVif... ',
           color: 'secondary',
           duration: 2000,
           animated: true,
@@ -38,7 +40,8 @@ export class LoginPage implements OnInit {
           position: 'middle'
         })
         successToast.present();
-      }).catch(async error => {
+        
+      } catch (error) {
         console.error('No se ha podido realizar el login.', error);
         const warningToast = await this.toastController.create({
           message: 'No se ha podido hacer el logueo con exito, revise sus datos nuevamente... 😪',
@@ -49,7 +52,7 @@ export class LoginPage implements OnInit {
           position: 'middle'
         })      
         warningToast.present();
-      })
+      }
     } else {
       const warningToast = await this.toastController.create({
         message: 'No se ha podido hacer el logueo con exito, revise sus datos nuevamente... 😪',

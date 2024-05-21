@@ -37,7 +37,7 @@ export class RegisterPage implements OnInit {
       })
 
       const successToast = await this.toastController.create({
-        message: 'Su usario se ha registrado con exito! Dirijase al login para continuar con la operacion 😊',
+        message: 'Su usuario se ha registrado con exito! Dirijase al login para continuar con la operacion 😊',
         color: 'secondary',
         duration: 3500,
         animated: true,
