@@ -1,3 +1,7 @@
 ion-toolbar {
     z-index: 9999;
+    
+    .icon-contact {
+        color: var(--ion-color-terciary);
+    }
 }

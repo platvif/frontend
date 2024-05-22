@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/assets/authentication.service';
 
@@ -14,7 +15,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private route: Router,
   ) {
     this.form = new FormGroup({
       mail: new FormControl('', [Validators.required, Validators.email]),
@@ -40,7 +42,7 @@ export class LoginPage implements OnInit {
           position: 'middle'
         })
         successToast.present();
-        
+        this.route.navigateByUrl('/reserves');
       } catch (error) {
         console.error('No se ha podido realizar el login.', error);
         const warningToast = await this.toastController.create({

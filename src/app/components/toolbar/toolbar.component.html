@@ -1,5 +1,15 @@
-<ion-toolbar color="primary">
+
+<ion-toolbar color="primary" *ngIf="backButton">
   <ion-buttons slot="start">
     <ion-back-button [defaultHref]="route" color="secondary"></ion-back-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-toolbar #userLogged *ngIf="!backButton" color="secondary">
+  <ion-buttons slot="end" >
+    <ion-button>
+      <!-- <ion-icon slot="icon-only" name="person-circle" class="icon-contact" size="large"></ion-icon> -->
+      <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+    </ion-button>
   </ion-buttons>
 </ion-toolbar>
