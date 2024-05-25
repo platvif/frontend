@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
-import { AuthenticationService } from 'src/app/assets/authentication.service';
+import { AuthenticationService } from 'src/app/assets/services/authentication.service';
 
 
 @Component({
@@ -30,9 +30,9 @@ export class RegisterPage implements OnInit {
   async onSubmit() {
     if (this.form?.valid) {
       console.log('Formulario valido: ', this.form?.value);
-      await this.authService.registerUser(this.form?.value).then(res => {
+      await this.authService.registerUser(this.form?.value).then((res:any) => {
         console.log('Usuario registrado correctamente.', res);
-      }).catch(error => {
+      }).catch((error:any) => {
         console.error('Imposible de crear el usuario', error);
       })
 
