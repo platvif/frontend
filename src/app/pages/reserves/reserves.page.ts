@@ -10,7 +10,7 @@ import { MapsService } from 'src/app/assets/services/maps.service';
 })
 export class ReservesPage implements OnInit {
 
-  restaurants:[] = [];
+  public restaurants:any = [];
 
   constructor(
     private mapsService: MapsService
@@ -21,11 +21,12 @@ export class ReservesPage implements OnInit {
   }
 
   async getRestaurants() {
-    this.mapsService.searchRestaurants().then((res) => {
-      console.log(res);
-      this.restaurants = res;
-    })
-
-    
+    try {
+      const response = await this.mapsService.searchRestaurants(); 
+      console.log(response);
+      this.restaurants = response;
+    } catch(error) {
+      console.error('console.error', error);
+    }
   }
 }

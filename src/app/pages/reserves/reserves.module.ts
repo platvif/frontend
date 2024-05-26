@@ -9,6 +9,7 @@ import { ReservesPageRoutingModule } from './reserves-routing.module';
 import { ReservesPage } from './reserves.page';
 
 import { ComponentModule } from 'src/app/components/component.module';
+import { RestaurantListComponent } from 'src/app/components/restaurant-list/restaurant-list.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { ComponentModule } from 'src/app/components/component.module';
     FormsModule,
     IonicModule,
     ReservesPageRoutingModule,
-    ComponentModule
+    ComponentModule,
   ],
   declarations: [ReservesPage]
 })

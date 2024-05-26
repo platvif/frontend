@@ -1,20 +1,24 @@
 <app-toolbar [backButton]="false"></app-toolbar>
-
-<div class="welcome-container">
-  <p class="hello-title">Hello Marcos Bottino!</p>
-  <p class="day-title">Hoy, 21 de Mayo del 2024</p>
-  <div class="img-container">
-    <img class="img" src="../../../assets/perfil-hombre-vivo.png">
+<ion-content>
+  <div class="welcome-container">
+    <p class="hello-title">Hello Marcos Bottino!</p>
+    <p class="day-title">Hoy, 21 de Mayo del 2024</p>
+    <div class="img-container">
+      <img class="img" src="../../../assets/perfil-hombre-vivo.png">
+    </div>
   </div>
-</div>
-
-<div class="restaurants">
-  <div class="search-container">
-    <input type="text" placeholder="Search Restaurants & More...">
-    <ion-button expand="full" color="secondary" shape="round" fill="solid" class="btn-create" type="submit">
-      <span class="material-symbols-rounded">
-        tune
-      </span>
-    </ion-button>
+  
+  <div class="restaurants">
+    <div class="search-container">
+      <input type="text" placeholder="Search Restaurants & More...">
+      <ion-button expand="full" color="secondary" shape="round" fill="solid" class="btn-create" type="submit">
+        <span class="material-symbols-rounded">
+          tune
+        </span>
+      </ion-button>
+    </div>
+    <div class="restaurant-list">
+      <app-restaurant-list [restaurants]="restaurants"></app-restaurant-list>
+    </div>
   </div>
-</div>
+</ion-content>

@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { IonicModule } from '@ionic/angular';
+import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 
 @NgModule({
   declarations: [
-    ToolbarComponent
+    ToolbarComponent,
+    RestaurantListComponent
   ],
   imports: [
     CommonModule,
@@ -13,6 +15,7 @@ import { IonicModule } from '@ionic/angular';
   ],
   exports: [
     ToolbarComponent,
+    RestaurantListComponent
   ]
 })
 export class ComponentModule { }

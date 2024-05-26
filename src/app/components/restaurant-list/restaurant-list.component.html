@@ -1,3 +1,15 @@
-<p>
-  restaurant-list works!
-</p>
+<div class="card-container">
+  <ion-card *ngFor="let restaurant of restaurants">
+    <img alt="Silhouette of mountains" [src]="restaurant.image_url" />
+    <ion-card-header>
+      <ion-card-title>{{restaurant.name}}</ion-card-title>
+      <ion-card-subtitle *ngIf="restaurant.is_closed" style="color: red;">CLOSED</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="!restaurant.is_closed" style="color: green;">OPEN</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p>📍{{restaurant.location.display_address[0]}}, {{restaurant.location.display_address[1]}}</p>
+    </ion-card-content>
+    <ion-button expand="block" color="secondary" class="btn-see" fill="solid" size="default">See More</ion-button>
+  </ion-card>
+</div>
