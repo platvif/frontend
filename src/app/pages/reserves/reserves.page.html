@@ -10,8 +10,8 @@
   
   <div class="restaurants">
     <div class="search-container">
-      <input type="text" placeholder="Search Restaurants & More...">
-      <ion-button expand="full" color="secondary" shape="round" fill="solid" class="btn-create" type="submit">
+      <input type="text" placeholder="Search Restaurants & More..." (keydown.enter)="onEnter($event)">
+      <ion-button expand="full" color="secondary" shape="round" fill="solid" class="btn-create">
         <span class="material-symbols-rounded">
           tune
         </span>

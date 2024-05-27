@@ -17,12 +17,19 @@ export class ReservesPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    await this.getRestaurants();
+    await this.getRestaurants('');
   }
 
-  async getRestaurants() {
+  async onEnter(event:any) {
+    const value = event.target.value;
+    console.log(value);
+    await this.getRestaurants(value);
+  }
+
+  async getRestaurants(keyword:string) {
     try {
-      const response = await this.mapsService.searchRestaurants(); 
+      console.log(keyword);
+      const response = await this.mapsService.searchRestaurants(keyword); 
       console.log(response);
       this.restaurants = response;
     } catch(error) {
