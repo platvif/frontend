@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-button color="primary" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Welcome</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content style="background-color: red;">
+  <div class="background"></div>
+  <h1 class="title">Filter</h1>
+  <div class="range">
+    <h3 class="title_range">Range</h3>
+    <br>
+    <ion-range class="ion-range" aria-label="Range with pin" [pin]="true" [pinFormatter]="pinFormatter" min="0" max="40000"></ion-range>
+  </div>
+</ion-content>

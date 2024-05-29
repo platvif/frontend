@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
+import { ModalController } from '@ionic/angular';
 import { MapsService } from 'src/app/assets/services/maps.service';
-
+import { FilterComponent } from 'src/app/components/filter/filter.component';
 
 @Component({
   selector: 'app-reserves',
@@ -13,8 +14,11 @@ export class ReservesPage implements OnInit {
   public restaurants:any = [];
 
   constructor(
-    private mapsService: MapsService
-  ) { }
+    private mapsService: MapsService,
+    private modalController: ModalController
+  ) {
+    this.onFilter();
+   }
 
   async ngOnInit() {
     await this.getRestaurants('');
@@ -35,5 +39,17 @@ export class ReservesPage implements OnInit {
     } catch(error) {
       console.error('console.error', error);
     }
+  }
+
+  async onFilter() {
+    const modal = await this.modalController.create({
+      component: FilterComponent,
+      mode: 'ios',
+      showBackdrop: true,
+      componentProps: {},
+      animated: true
+    })
+
+    await modal.present();
   }
 }

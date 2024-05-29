@@ -13,6 +13,7 @@ export class MapsService {
   private API_URL = 'http://localhost:3000/api/yelp/search';
 
   // https://rapidapi.com/ptwebsolution/api/restaurants222/playground/apiendpoint_1bd45c48-f3ec-4640-a518-2bf917e3bd47
+
   constructor(
     private http: HttpClient,
   ) { }
@@ -30,7 +31,7 @@ export class MapsService {
 
     const response = await this.http.get(`http://localhost:3000/api/yelp/search`, {
       params: {
-        term,
+        term, 
         latitude,
         longitude
       }

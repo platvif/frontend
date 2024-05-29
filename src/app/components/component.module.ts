@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { IonicModule } from '@ionic/angular';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
+import { FilterComponent } from './filter/filter.component';
+
 
 @NgModule({
   declarations: [
     ToolbarComponent,
-    RestaurantListComponent
+    RestaurantListComponent,
+    FilterComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +18,8 @@ import { RestaurantListComponent } from './restaurant-list/restaurant-list.compo
   ],
   exports: [
     ToolbarComponent,
-    RestaurantListComponent
+    RestaurantListComponent,
+    FilterComponent
   ]
 })
 export class ComponentModule { }
