@@ -15,6 +15,38 @@
   <div class="range">
     <h3 class="title_range">Range</h3>
     <br>
-    <ion-range class="ion-range" aria-label="Range with pin" [pin]="true" [pinFormatter]="pinFormatter" min="0" max="40000"></ion-range>
+    <ion-range color="secondary" class="ion-range" aria-label="Range with pin" [pin]="true" [pinFormatter]="pinFormatter" min="0" max="40000"></ion-range>
+  </div>
+  <div class="price">
+    <ion-list>
+       <ion-item>
+        <ion-select aria-label="Price" interface="popover" placeholder="Select your price" (ionChange)="handleChange($event)">
+          <ion-select-option value="apples" *ngFor="let price of prices" [value]="price">{{price.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="catalog">
+    <ion-content color="light">
+      <ion-list [inset]="true">
+        <ion-item [button]="true" [detail]="false" id="select-fruits">
+          <ion-label>Select Categories</ion-label>
+          <div slot="end" id="selected-fruits">{{ selectedFruitsText }}</div>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+    
+    <ion-modal trigger="select-fruits" #modal>
+      <ng-template>
+        <app-typeahead
+          class="ion-page"
+          title="Favorite Fruits"
+          [items]="fruits"
+          [selectedItems]="selectedFruits"
+          (selectionChange)="fruitSelectionChanged($event)"
+          (selectionCancel)="modal.dismiss()"
+        ></app-typeahead>
+      </ng-template>
+    </ion-modal>
   </div>
 </ion-content>

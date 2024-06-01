@@ -10,7 +10,7 @@ import { FilterComponent } from './filter/filter.component';
   declarations: [
     ToolbarComponent,
     RestaurantListComponent,
-    FilterComponent
+    FilterComponent,
   ],
   imports: [
     CommonModule,
@@ -19,7 +19,7 @@ import { FilterComponent } from './filter/filter.component';
   exports: [
     ToolbarComponent,
     RestaurantListComponent,
-    FilterComponent
+    FilterComponent,
   ]
 })
 export class ComponentModule { }

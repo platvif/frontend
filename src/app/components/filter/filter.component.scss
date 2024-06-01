@@ -15,14 +15,14 @@
 
 .range {
     position: absolute;
-    top: 18%;
+    top: 14%;
     width: 90%;
     height: 12%;
     left: 50%;
     transform: translateX(-50%);
     background: var(--ion-color-terciary);
     border-radius: 25px;
-    box-shadow: 0px 2px 5px 5px dimgray;
+    box-shadow: 0px 2px 5px 1px dimgray;
 
     .title_range {
         position: absolute;
@@ -39,4 +39,37 @@
         transform: translateX(-50%);
         top: 9%;
     }
+}
+
+.price {
+    position: absolute;
+    top: 31%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 12%;
+    /* background: red; */
+    /* border-radius: 25px; */
+    background: var(--ion-color-terciary);
+    border-radius: 25px;
+    box-shadow: 0px 2px 5px 1px dimgray;
+
+    ion-list {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 30%;
+        width: 90%;
+        border-radius: 7px;
+    }
+}
+
+.catalog {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 53%;
+    // background: red;
 }
