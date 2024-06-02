@@ -27,11 +27,11 @@
     </ion-list>
   </div>
   <div class="catalog">
-    <ion-content color="light">
+    <ion-content color="primary">
       <ion-list [inset]="true">
-        <ion-item [button]="true" [detail]="false" id="select-fruits">
-          <ion-label>Select Categories</ion-label>
-          <div slot="end" id="selected-fruits">{{ selectedFruitsText }}</div>
+        <ion-item [button]="true" [detail]="false" id="select-fruits" color="secondary">
+          <ion-label>Select Catalogs</ion-label>
+          <div slot="end" id="selected-fruits">{{ selectedCatalogText }}</div>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -40,13 +40,17 @@
       <ng-template>
         <app-typeahead
           class="ion-page"
-          title="Favorite Fruits"
-          [items]="fruits"
-          [selectedItems]="selectedFruits"
-          (selectionChange)="fruitSelectionChanged($event)"
+          title="Select Catalogs"
+          [items]="catalog"
+          [selectedItems]="selectedCatalogs"
+          (selectionChange)="catalogSelectionChanged($event)"
           (selectionCancel)="modal.dismiss()"
         ></app-typeahead>
       </ng-template>
     </ion-modal>
+  </div>
+  <div class="location">
+    <h3 class="title">Location</h3>
+    <ion-input class="input-location" placeholder="Write the location you want to search..."></ion-input>
   </div>
 </ion-content>

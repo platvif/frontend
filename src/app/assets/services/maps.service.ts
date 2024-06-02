@@ -39,6 +39,20 @@ export class MapsService {
     return response;
   }
 
+  async updateRestaurants(term:string, userLocation?:string) {
+    const coordinates = await Geolocation.getCurrentPosition();
+
+    console.log('Latitude:', coordinates.coords.latitude);
+    console.log('Longitud: ', coordinates.coords.longitude);
+
+
+    const terms = 'hamburguesa';
+    const latitude = coordinates.coords.latitude;
+    const longitude = coordinates.coords.longitude;
+    const radius = '12000';
+    const price = '1';
+  }
+
   async searchRestaurants(term:string, userLocation?:string) {
     const coordinates = await Geolocation.getCurrentPosition();
 
