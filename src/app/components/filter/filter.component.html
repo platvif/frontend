@@ -15,12 +15,13 @@
   <div class="range">
     <h3 class="title_range">Range</h3>
     <br>
-    <ion-range color="secondary" class="ion-range" aria-label="Range with pin" [pin]="true" [pinFormatter]="pinFormatter" min="0" max="40000"></ion-range>
+    <ion-range color="secondary" (ionChange)="onChangeRange($event)" class="ion-range" aria-label="Range with pin" [pin]="true" [pinFormatter]="pinFormatter" min="0" max="40000"></ion-range>
   </div>
   <div class="price">
+    <h3 class="title">Price</h3>
     <ion-list>
        <ion-item>
-        <ion-select aria-label="Price" interface="popover" placeholder="Select your price" (ionChange)="handleChange($event)">
+        <ion-select aria-label="Price" interface="popover" placeholder="Select your price" (ionChange)="onChangePrice($event)">
           <ion-select-option value="apples" *ngFor="let price of prices" [value]="price">{{price.name}}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -51,6 +52,6 @@
   </div>
   <div class="location">
     <h3 class="title">Location</h3>
-    <ion-input class="input-location" placeholder="Write the location you want to search..."></ion-input>
+    <ion-input class="input-location" placeholder="Write the location you want to search..." (ionChange)="onChangeLocation($event)"></ion-input>
   </div>
 </ion-content>

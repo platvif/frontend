@@ -53,43 +53,44 @@ export class MapsService {
     const price = '1';
   }
 
-  async searchRestaurants(term:string, userLocation?:string) {
+  async searchRestaurants(term: string, userLocation?: string, radius?: string, price?: string, catalog?: string) {
     const coordinates = await Geolocation.getCurrentPosition();
-
+    
     console.log('Latitud: ', coordinates.coords.latitude);
     console.log('Longitud: ', coordinates.coords.longitude);
 
-
-    const terms = 'hamburguesa';
+    // Default values
+    const defaultRadius = '12000';
+    const defaultPrice = '1';
     const latitude = coordinates.coords.latitude;
     const longitude = coordinates.coords.longitude;
-    const radius = '12000';
-    const price = '1';
 
-    if(userLocation) {
-      const response = await this.http.get(`http://localhost:3000/api/yelp/search`, {
-        params: {
-          term,
-          userLocation,
-          radius,
-          price
-        }
-      }).toPromise();
-      return response;
+    // Constructing the parameters for the request
+    let params: any = {
+        term,
+        radius: radius || defaultRadius,
+        price: price || defaultPrice
+    };
+
+    // Add location parameters based on userLocation presence
+    if (userLocation) {
+        params.location = userLocation;
     } else {
-      const response = await this.http.get(`http://localhost:3000/api/yelp/search`, {
-        params: {
-          term,
-          latitude,
-          longitude,
-          radius,
-          price
-        }
-      }).toPromise();
-      return response;
+        params.latitude = latitude;
+        params.longitude = longitude;
     }
 
-  }
+    // Add catalog if provided
+    if (catalog) {
+        params.catalog = catalog;
+    }
+
+    // Making the request
+    const response = await this.http.get(`http://localhost:3000/api/yelp/search`, { params }).toPromise();
+    return response;
+}
+
+
 
   async getGeolocation() {
     try {

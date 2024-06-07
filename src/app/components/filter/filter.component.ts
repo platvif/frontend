@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import {Item } from '../../assets/utils/item';
+import { Filter } from 'src/app/assets/utils/filter';
 
 @Component({
   selector: 'app-filter',
@@ -8,6 +9,8 @@ import {Item } from '../../assets/utils/item';
   styleUrls: ['./filter.component.scss'],
 })
 export class FilterComponent  implements OnInit {
+
+  @Input() onButtonClick!: (domain: string) => void;
 
   prices = [
     {
@@ -30,6 +33,7 @@ export class FilterComponent  implements OnInit {
 
   selectedCatalogText = '0 Items';
   selectedCatalogs: string[] = [];
+  selectedCatalog: string = '';
 
   // Pizza&categories=Sushi&categories=Burger
 
@@ -51,6 +55,14 @@ export class FilterComponent  implements OnInit {
     { text: 'Desserts', value: 'desserts' }
   ];
 
+  public filter: any = {
+    range: '',
+    price: 0,
+    location: '',
+    catalog: ''
+  }
+
+
   constructor(
     private modalCtrl: ModalController,
   ) { }
@@ -59,7 +71,14 @@ export class FilterComponent  implements OnInit {
 
   pinFormatter(value: number) {
     console.log(`${value}Mts`);
-    return `${value}Mts`;
+    const range = `${value}`;
+    return range;
+  }
+
+  onChangeRange(value:any) {
+    const range = `${value.target.value}`;
+    this.filter.range = range;
+    console.log('this.filter.range', this.filter.range)
   }
 
   private formatData(data: string[]) {
@@ -71,10 +90,27 @@ export class FilterComponent  implements OnInit {
 
     return `${data.length} items`;
   }
+
+  private formatCatalog(selectedCatalogs: any): string {
+    if (!selectedCatalogs || selectedCatalogs.length === 0) {
+        return '';
+    }
+    
+    // Assuming selectedCatalogs is an array of strings
+    let formattedText = selectedCatalogs.map((item: string, index: number) => {
+        return index === 0 ? item : `categories=${item}`;
+    }).join('&');
+
+    return formattedText;
+}
   
   catalogSelectionChanged(catalog: any) {
     this.selectedCatalogs = catalog;
+    this.selectedCatalog = this.formatCatalog(catalog);
     this.selectedCatalogText = this.formatData(this.selectedCatalogs);
+    console.log('this.selectedCatalogs', this.selectedCatalog);
+    this.filter.catalog = this.selectedCatalog;
+    this.filter.catalog = this.selectedCatalog;
     this.modalCtrl.dismiss();
   }
 
@@ -83,11 +119,21 @@ export class FilterComponent  implements OnInit {
   }
 
   confirm() {
+    this.onButtonClick(this.filter);
     return this.modalCtrl.dismiss('confirm');
   }
 
-  handleChange(event:any) {
+  onChangeLocation(event:any) {
+    const value = event.target.value;
+    console.log(event.target.value);
+    this.filter.location = value;
+  }
+
+  onChangePrice(event:any) {
     console.log('Current value: ', event.target.value);
+    const price = event.target.value;
+    this.filter.price = price.id;
+    console.log('this.filter.price', this.filter.price)
   }
 
   

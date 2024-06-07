@@ -13,11 +13,13 @@ export class ReservesPage implements OnInit {
 
   public restaurants:any = [];
 
+  public searchKeyword:string = '';
+
   constructor(
     private mapsService: MapsService,
     private modalController: ModalController
   ) {
-    this.onFilter();
+    
    }
 
   async ngOnInit() {
@@ -27,13 +29,14 @@ export class ReservesPage implements OnInit {
   async onEnter(event:any) {
     const value = event.target.value;
     console.log(value);
+    this.searchKeyword = value;
     await this.getRestaurants(value);
   }
 
   async getRestaurants(keyword:string) {
     try {
       console.log(keyword);
-      const response = await this.mapsService.searchRestaurants(keyword); 
+      const response = await this.mapsService.searchRestaurants(keyword, ''); 
       console.log(response);
       this.restaurants = response;
     } catch(error) {
@@ -46,7 +49,17 @@ export class ReservesPage implements OnInit {
       component: FilterComponent,
       mode: 'ios',
       showBackdrop: true,
-      componentProps: {},
+      componentProps: {
+        onButtonClick: async (filter:any) => {
+          try {
+            const response = await this.mapsService.searchRestaurants(this.searchKeyword, filter?.location, filter?.radius, filter?.price, filter?.catalog);
+            console.log(response);
+            this.restaurants = response;
+          } catch(error) {
+            console.error('No se pudo acceder a los restaurantes', error);
+          }
+        }
+      },
       animated: true
     })
 
