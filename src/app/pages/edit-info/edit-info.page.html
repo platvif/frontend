@@ -1,0 +1,63 @@
+<app-toolbar [route]="'/reserves'" [backButton]="true"></app-toolbar>
+<div class="cover_container">
+    <button class="edit_cover">
+        <span class="material-symbols-rounded">
+            edit
+        </span>
+    </button>
+    <button class="edit_profile">
+        <span class="material-symbols-rounded">
+            edit
+        </span>
+    </button>
+    <img src="../../../assets/cover.jpg" alt="Portada" class="cover">
+    <img src="../../../assets/perfil-hombre-vivo.png" alt="profile" class="profile">
+</div>
+<div class="form_container">
+    <h3 class="title">Editar informacion</h3>
+
+    <!-- <ion-list> -->
+        <div class="input_container">
+            <form class="form-data" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <ion-item class="input">
+                  <ion-input labelPlacement="floating" placeholder="Jhon" formControlName="name" [value]="user?.name">
+                    <div slot="label">Nombre <ion-text color="danger">(Required)</ion-text></div>
+                  </ion-input>
+                </ion-item>
+        
+                <ion-item class="input">
+                    <ion-input labelPlacement="floating" placeholder="Doe" formControlName="lastname" [value]="user?.lastname">
+                      <div slot="label">Apellido <ion-text color="danger">(Required)</ion-text></div>
+                    </ion-input>
+                  </ion-item>
+        
+                  <ion-item class="input">
+                    <ion-input labelPlacement="floating" placeholder="jhondoe@mail.com" formControlName="mail" [value]="user?.mail">
+                      <div slot="label">Email <ion-text color="danger">(Required)</ion-text></div>
+                    </ion-input>
+                  </ion-item>
+        
+                  <ion-item class="input">
+                    <ion-input labelPlacement="floating" placeholder="+54 11 1234-5678" formControlName="phone" [value]="user?.phone">
+                      <div slot="label">Phone <ion-text color="danger">(Required)</ion-text></div>
+                    </ion-input>
+                  </ion-item>
+        
+                  <ion-item class="input">
+                    <ion-input labelPlacement="floating" placeholder="Palermo, Buenos Aires, Argentina" formControlName="location" [value]="user?.location">
+                      <div slot="label">Location <ion-text color="danger">(Required)</ion-text></div>
+                    </ion-input>
+                  </ion-item>
+        
+                  <ion-item class="input">
+                    <ion-input labelPlacement="floating" placeholder="Big Pons" formControlName="favorite_res" [value]="user?.favorite_res">
+                      <div slot="label">Favorite restaurant <ion-text color="danger"></ion-text></div>
+                    </ion-input>
+                    </ion-item>
+                      <ion-button color="secondary" expand="block" class="btn-submit" type="submit">
+                          Save changes
+                      </ion-button>
+            </form>
+        </div>
+      <!-- </ion-list> -->
+</div>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { ModalController } from '@ionic/angular';
 import { MapsService } from 'src/app/assets/services/maps.service';
+import { UserService } from 'src/app/assets/services/user.service';
+import { User } from 'src/app/assets/utils/user';
 import { FilterComponent } from 'src/app/components/filter/filter.component';
 
 @Component({
@@ -15,15 +17,22 @@ export class ReservesPage implements OnInit {
 
   public searchKeyword:string = '';
 
+  user?:User;
+
   constructor(
     private mapsService: MapsService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private userService: UserService
   ) {
     
    }
 
   async ngOnInit() {
     await this.getRestaurants('');
+    this.userService.current.subscribe((res) => {
+      this.user = res;
+    })
+    console.log('this.user en reserves', this.user);
   }
 
   async onEnter(event:any) {

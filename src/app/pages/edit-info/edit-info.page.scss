@@ -1,0 +1,102 @@
+.cover_container {
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    // background: red;
+
+    .edit_cover {
+        position: absolute;
+        background: var(--ion-color-primary);
+        top: 20%;
+        right: 3%;
+        z-index: 99;
+        color: var(--ion-color-secondary);
+        padding: 2.5px;
+        border-radius: 25px;
+        border: 3px solid var(--ion-color-secondary);
+        // --background-activated: var(--ion-color-secondary);
+    }
+
+    .edit_profile {
+        position: absolute;
+        background: var(--ion-color-primary);
+        top: 64%;
+        right: 36%;
+        z-index: 99;
+        color: var(--ion-color-secondary);
+        padding: 2.5px;
+        border-radius: 25px;
+        border: 3px solid var(--ion-color-secondary);
+        // --background-activated: var(--ion-color-secondary);
+    }
+
+    .cover {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        mask-image: linear-gradient(
+            black 85%,
+            transparent
+        );
+    }
+
+    .profile {
+        position: absolute;
+        z-index: 9;
+        width: 25%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 37%;
+        border-radius: 100%;
+        box-shadow: 0px 3px 5px black;
+    }
+}
+
+.form_container {
+    position: absolute;
+    top: 33%;
+    width: 100%;
+    height: 100%;
+
+    .input_container {
+        position: absolute;
+        top: 8%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+        .input {
+            margin-bottom: 5%;
+        border-radius: 25px;
+        border: 2px solid var(--ion-color-secondary);
+        }
+    }
+
+    .title {
+        position: absolute;
+        left: 5%;
+        color: var(--ion-color-secondary);
+    }
+
+    .email_input {
+        position: absolute;
+        top: 8%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        border-radius: 25px;
+        border: 2px solid var(--ion-color-secondary);
+    }
+}
+
+.btn-submit {
+    position: absolute;
+    left: 49.5%;
+    transform: translateX(-50%);
+    width: 90%;
+    font-weight: 600;
+    bottom: -11%;
+}

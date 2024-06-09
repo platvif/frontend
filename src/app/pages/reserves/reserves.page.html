@@ -1,10 +1,16 @@
 <app-toolbar [backButton]="false"></app-toolbar>
 <ion-content>
   <div class="welcome-container">
-    <p class="hello-title">Hello Marcos Bottino!</p>
+    <p class="hello-title">Hello <strong>{{user?.name}} {{user?.lastname}}</strong>!</p>
     <p class="day-title">Hoy, 21 de Mayo del 2024</p>
+    <ion-button class="btn-edit" routerLink="/edit-info">
+      Editar informacion
+    </ion-button>
     <div class="img-container">
-      <img class="img" src="../../../assets/perfil-hombre-vivo.png">
+      <img class="img" [src]="user?.selfie" *ngIf="user?.selfie">
+      <span class="material-symbols-rounded user_icon" *ngIf="!user?.selfie">
+        account_circle
+        </span>
     </div>
   </div>
   

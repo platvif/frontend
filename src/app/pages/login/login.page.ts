@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/assets/services/authentication.service';
+import { UserService } from 'src/app/assets/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginPage implements OnInit {
     private authService: AuthenticationService,
     private toastController: ToastController,
     private route: Router,
+    private userService: UserService
   ) {
     this.form = new FormGroup({
       mail: new FormControl('', [Validators.required, Validators.email]),
@@ -30,11 +32,11 @@ export class LoginPage implements OnInit {
     if (this.form?.valid) {
       console.log('Formulario Valido: ', this.form?.value);
       try {
-        const login = await this.authService.loginUser(this.form?.value);
+        const login:any = await this.authService.loginUser(this.form?.value);
         console.log('Usuario Registrado exitosamente!', login);
         
         const successToast = await this.toastController.create({
-          message: 'Su usuario se ha logueado con Exito! Bienvenido a PlatVif... ',
+          message: 'Su usuario se ha logueado con Exito! Bienvenido a PlatVif... 😊',
           color: 'secondary',
           duration: 2000,
           animated: true,
@@ -42,6 +44,7 @@ export class LoginPage implements OnInit {
           position: 'middle'
         })
         successToast.present();
+        this.userService.setCurrentUser(login);
         this.route.navigateByUrl('/reserves');
       } catch (error) {
         console.error('No se ha podido realizar el login.', error);
