@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { FilterComponent } from './filter/filter.component';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { TypeaheadComponent } from './typeahead/typeahead.component';
   ],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    RouterModule
   ],
   exports: [
     ToolbarComponent,

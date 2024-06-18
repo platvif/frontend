@@ -10,6 +10,14 @@
     <ion-card-content>
       <p>📍{{restaurant.location.display_address[0]}}, {{restaurant.location.display_address[1]}}</p>
     </ion-card-content>
-    <ion-button expand="block" color="secondary" class="btn-see" fill="solid" size="default">See More</ion-button>
+    <ion-button 
+    expand="block" 
+    color="secondary" 
+    class="btn-see" 
+    fill="solid" 
+    size="default"
+    [routerLink]="['detail', restaurant.id]"
+    >See More</ion-button>
+ <!--  -->
   </ion-card>
 </div>

@@ -18,27 +18,6 @@ export class MapsService {
     private http: HttpClient,
   ) { }
 
-  async searchRestaurant(term:string, userLocation?:string) {
-    const coordinates = await Geolocation.getCurrentPosition();
-
-    console.log('Latitud: ', coordinates.coords.latitude);
-    console.log('Longitud: ', coordinates.coords.longitude);
-
-
-    const terms = 'hamburguesa';
-    const latitude = coordinates.coords.latitude;
-    const longitude = coordinates.coords.longitude;
-
-    const response = await this.http.get(`http://localhost:3000/api/yelp/search`, {
-      params: {
-        term, 
-        latitude,
-        longitude
-      }
-    }).toPromise();
-    return response;
-  }
-
   async updateRestaurants(term:string, userLocation?:string) {
     const coordinates = await Geolocation.getCurrentPosition();
 
@@ -100,5 +79,10 @@ export class MapsService {
     } catch (error) {
       console.error('Error al obtener la ubicacion', error);
     }
+  }
+
+  async getRestaurantDetails(id:string) {
+    const response = await this.http.get(`http://localhost:3000/api/yelp/details/${id}`).toPromise();
+    return response;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ToastController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/assets/services/authentication.service';
 import { UserService } from 'src/app/assets/services/user.service';
@@ -13,14 +14,14 @@ import { User } from 'src/app/assets/utils/user';
 })
 export class EditInfoPage implements OnInit {
   user?:User;
-
+  selfie?: any;
   form!:FormGroup;
 
   constructor(
     private authService: AuthenticationService,
     private toastController: ToastController,
     private route: Router,
-    private userService: UserService
+    private userService: UserService,
   ) { 
     this.form = new FormGroup({
       id: new FormControl('', [Validators.required]),
@@ -54,6 +55,18 @@ export class EditInfoPage implements OnInit {
       }
     })
     console.log('this.user en edit-info', this.user);
+  }
+
+  async getImage() {
+    console.log('button clicked');
+    const camera = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Prompt // Esto permite al usuario elegir entre la cámara y la galería
+    })
+    this.selfie = camera.base64String;
+    console.log(this.selfie);
   }
 
   async onSubmit() {

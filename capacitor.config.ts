@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.example.app',
-  appName: 'front_platvif',
+  appId: 'com.platvif.reserve',
+  appName: 'PlatVif Reserve',
   webDir: 'www'
 };
 
