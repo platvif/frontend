@@ -13,3 +13,134 @@
         );
     }
 }
+
+.header-title {
+    position: absolute;
+    top: 55%;
+    width: 81%;
+    height: 26%;
+    // background: red;
+
+    .chips {
+        position: absolute;
+        width: 100%;
+        height: 30%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        left: 3%;
+        top: -4%;  
+
+        .chip {
+            color: white;
+            border: 1px solid white;
+            font-size: 11px;
+            margin-bottom: 4%;
+            box-shadow: 0px 0px 5px;
+        }
+
+    }
+
+    .title {
+        position: relative;
+        top: 16%;
+        left: 5%;  
+        text-shadow: 0px 0px 5px black;      
+    }
+
+    .location {
+        position: absolute;
+        left: 5%;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        text-shadow: 0px 0px 5px black;
+        
+        .icon {
+            margin-right: 3%;
+        }
+    }
+}
+
+.items {
+    // background: red;
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    /* display: flex; */
+    height: 9%;
+
+    ion-col {
+        background-color: transparent;
+        border: solid 2px var(--ion-color-secondary);
+        color: #fff;
+        text-align: center;
+        height: 76px;
+        margin: 1%;
+        border-radius: 15px;
+        box-shadow: 0px 3px 4px 0px dimgray;
+
+        .icon {
+            color: var(--ion-color-secondary);
+        }
+
+        .title-item {
+            color: var(--ion-color-secondary);
+            font-size: 15px;
+            position: relative;
+            bottom: 10%;
+            font-weight: 600;
+        }
+      }
+
+    .menu {
+        background: var(--ion-color-secondary);
+        color: var(--ion-color-primary);
+
+        .title-menu {
+            color: var(--ion-color-primary);
+        }
+    }
+}
+
+.btn_container {
+    position: absolute;
+    bottom: 0;
+    // background: red;
+    width: 100%;
+    display: flex;
+    /* align-content: center; */
+    justify-content: center;
+
+    ion-button {
+        width: 90%;
+    }
+}
+
+.swiper {
+    // background: red;
+    position: relative;
+    top: 57%;
+    height: 37%;
+
+    swiper-container {
+        width: 88%;
+        height: 85%;
+
+        swiper-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            // height: 80%;
+            /* width: 80%; */
+            margin-right: 5%;
+            background-color: white;
+            border: solid 3px var(--ion-color-secondary);
+            /* box-shadow: 0px 0px 4px 0px dimgray; */
+            border-radius: 25px;
+        }
+    }
+}

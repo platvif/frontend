@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'reserves',
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     // loadChildren: () => import('./pages/reserves/reserves.module').then( m => m.ReservesPageModule),
     children: [
       {

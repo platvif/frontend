@@ -85,4 +85,15 @@ export class MapsService {
     const response = await this.http.get(`http://localhost:3000/api/yelp/details/${id}`).toPromise();
     return response;
   }
+
+  splitTime(timeStr: string): string {
+    if (timeStr.length !== 4) {
+      throw new Error('Formato incorrecto');
+    }
+
+    const hours = timeStr.slice(0, 2);
+    const minutes = timeStr.slice(2, 4);
+
+    return `${hours}:${minutes}`;
+  }
 }
