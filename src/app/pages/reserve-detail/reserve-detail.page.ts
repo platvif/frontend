@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MapsService } from 'src/app/assets/services/maps.service';
+import { YelpService } from 'src/app/assets/services/yelp.service';
 // import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
+import * as L from "leaflet";
 
 @Component({
   selector: 'app-reserve-detail',
@@ -33,7 +34,7 @@ export class ReserveDetailPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private mapsService: MapsService
+    private yelpService: YelpService
   ) { }
 
   ngOnInit() {
@@ -44,17 +45,47 @@ export class ReserveDetailPage implements OnInit {
 
     console.log(this.id);
 
-    this.mapsService.getRestaurantDetails(this.id).then((res) => {
+    this.yelpService.getRestaurantDetails(this.id).then((res) => {
       console.log('Detalles del restaurante: ', res);
       this.restaurant = res;
 
-      this.start = this.mapsService.splitTime(this.restaurant.hours[0].open[0].start);
-      this.end = this.mapsService.splitTime(this.restaurant.hours[0].open[0].end);
+      this.start = this.yelpService.splitTime(this.restaurant.hours[0].open[0].start);
+      this.end = this.yelpService.splitTime(this.restaurant.hours[0].open[0].end);
   
       console.log(this.start, this.end);
+      if(res) {
+        this.loadMap(res);
+      }
     })
+      
+  }
 
-    
+  async loadMap(res:any) {
+
+    // let map = L.map('map', {
+    //   center: [res.latitude, res.longitude],
+    //   zoom: 13,
+    //   maxZoom: 16,
+    //   minZoom: 6,
+    //   renderer: L.canvas()
+    // });
+    let latitude = res.coordinates.latitude.toFixed(2);
+    let longitude = res.coordinates.longitude.toFixed(2);
+
+    let map = L.map('map').setView([latitude, longitude], 13);
+
+    L.Icon.Default.imagePath = "assets/icon/leaflet/";
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      // maxZoom: 16,
+      // minZoom:4,
+      attribution: '&copy; <a href="https://1938.com.es">Web Inteligencia Artificial</a>',
+    }).addTo(map);
+    L.marker([latitude, longitude]).addTo(map);
+    map.whenReady(() => {
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 1000);
+    });
   }
 
   

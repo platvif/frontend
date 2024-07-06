@@ -7,7 +7,7 @@ import axios from 'axios';
 @Injectable({
   providedIn: 'root'
 })
-export class MapsService {
+export class YelpService {
 
 
   private API_URL = 'http://localhost:3000/api/yelp/search';
@@ -95,5 +95,13 @@ export class MapsService {
     const minutes = timeStr.slice(2, 4);
 
     return `${hours}:${minutes}`;
+  }
+
+  adjustCoordinates(latitude:any, longitude:any) {
+    const adjustedLat = Math.max(Math.min(latitude, 90), -90);
+
+    const adjustedLng = Math.max(Math.min(longitude, 180), -180);
+
+    return { latitude: adjustedLat, longitude: adjustedLng};
   }
 }

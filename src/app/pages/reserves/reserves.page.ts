@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { ModalController } from '@ionic/angular';
-import { MapsService } from 'src/app/assets/services/maps.service';
+import { YelpService } from 'src/app/assets/services/yelp.service';
 import { UserService } from 'src/app/assets/services/user.service';
 import { User } from 'src/app/assets/utils/user';
 import { FilterComponent } from 'src/app/components/filter/filter.component';
@@ -20,7 +20,7 @@ export class ReservesPage implements OnInit {
   user?:User;
 
   constructor(
-    private mapsService: MapsService,
+    private yelpService: YelpService,
     private modalController: ModalController,
     private userService: UserService
   ) {
@@ -45,7 +45,7 @@ export class ReservesPage implements OnInit {
   async getRestaurants(keyword:string) {
     try {
       console.log(keyword);
-      const response = await this.mapsService.searchRestaurants(keyword, ''); 
+      const response = await this.yelpService.searchRestaurants(keyword, ''); 
       console.log(response);
       this.restaurants = response;
     } catch(error) {
@@ -61,7 +61,7 @@ export class ReservesPage implements OnInit {
       componentProps: {
         onButtonClick: async (filter:any) => {
           try {
-            const response = await this.mapsService.searchRestaurants(this.searchKeyword, filter?.location, filter?.radius, filter?.price, filter?.catalog);
+            const response = await this.yelpService.searchRestaurants(this.searchKeyword, filter?.location, filter?.radius, filter?.price, filter?.catalog);
             console.log(response);
             this.restaurants = response;
           } catch(error) {

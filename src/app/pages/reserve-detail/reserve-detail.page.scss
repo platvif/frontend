@@ -144,3 +144,23 @@
         }
     }
 }
+
+.map {
+    position: absolute;
+    top: 57%;
+    width: 95%;
+    height: 34%;
+    z-index: 99;
+    /* background: red; */
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 13px;
+
+    #map {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        border-radius: 15px;
+        box-shadow: 0px 0px 8px dimgray;
+    }
+}

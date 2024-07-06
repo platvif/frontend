@@ -34,4 +34,8 @@ export class AuthenticationService {
       console.log('res', res);
     })
   }
+
+  setIdentifier(identifier:any) {
+    window.localStorage.setItem('USER_IDENTIFIER', JSON.stringify(identifier));
+  }
 }

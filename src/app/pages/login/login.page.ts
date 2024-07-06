@@ -13,6 +13,7 @@ import { UserService } from 'src/app/assets/services/user.service';
 export class LoginPage implements OnInit {
 
   form!:FormGroup;
+  identifier:any;
 
   constructor(
     private authService: AuthenticationService,
@@ -45,6 +46,7 @@ export class LoginPage implements OnInit {
         })
         successToast.present();
         this.userService.setCurrentUser(login);
+        this.identifier = login;
         this.route.navigateByUrl('/reserves');
       } catch (error) {
         console.error('No se ha podido realizar el login.', error);

@@ -1,15 +1,15 @@
 <app-toolbar [route]="'/reserve'" [backButton]="true"></app-toolbar>
 <div class="header-info">
-    <img [src]="restaurant.image_url" class="cover">
+    <img [src]="restaurant?.image_url" class="cover">
     <div class="header-title">
         <div class="chips">
-            <ion-chip [outline]="true" *ngFor="let chip of this.restaurant.categories" class="chip">{{chip.title}}</ion-chip>
+            <ion-chip [outline]="true" *ngFor="let chip of this.restaurant?.categories" class="chip">{{chip?.title}}</ion-chip>
         </div>
-        <h3 class="title">{{restaurant.name}}</h3>
+        <h3 class="title">{{restaurant?.name}}</h3>
         <p class="location">    
             <span class="material-symbols-rounded icon">
                 location_on
-            </span>{{restaurant.location.address1}}, {{restaurant.location.city}}, {{restaurant.location.zip_code}}
+            </span>{{restaurant?.location.address1}}, {{restaurant?.location.city}}, {{restaurant?.location.zip_code}}
         </p>
     </div>
 </div>
@@ -26,13 +26,13 @@
             <span class="material-symbols-rounded icon">
                 payments
             </span>
-            <p class="title-item">{{restaurant.price}}</p>
+            <p class="title-item">{{restaurant?.price}}</p>
           </ion-col>
           <ion-col>
             <span class="material-symbols-rounded icon">
                 sports_motorsports
             </span>
-            <p class="title-item">{{restaurant.price}}</p>
+            <p class="title-item">{{restaurant?.delivery || 'Delivery'}}</p>
           </ion-col>
           <ion-col class="menu">
             <span class="material-symbols-rounded">
@@ -44,12 +44,10 @@
       </ion-grid>
 </div>
 
-<div class="swiper">
-    <swiper-container>
-        <swiper-slide>hola</swiper-slide>
-        <swiper-slide>2</swiper-slide>
-        <swiper-slide>3</swiper-slide>
-    </swiper-container>
+<div class="map">
+    <div id="map">
+
+    </div>
 </div>
 
 <div class="btn_container">
