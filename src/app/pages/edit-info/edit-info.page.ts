@@ -62,7 +62,7 @@ export class EditInfoPage implements OnInit {
     const camera = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.Base64,
       source: CameraSource.Prompt // Esto permite al usuario elegir entre la cámara y la galería
     })
     this.selfie = camera.base64String;

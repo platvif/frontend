@@ -4,6 +4,7 @@ import { YelpService } from 'src/app/assets/services/yelp.service';
 // import Swiper from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 import * as L from "leaflet";
+import { LoadingController, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reserve-detail',
@@ -34,14 +35,27 @@ export class ReserveDetailPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private yelpService: YelpService
+    private yelpService: YelpService,
+    private modalController: ModalController,
+    private loadingController: LoadingController
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     // https://swiperjs.com/swiper-api#navigation => Lo usaremos luego para los ratings...
-    this.activatedRoute.paramMap.subscribe((paramMap) => {
+    const loading = await this.loadingController.create({
+      message: 'Loading',
+      duration: 2000,
+      backdropDismiss: true,
+      showBackdrop: true
+    })
+
+    await loading.present();
+
+    this.activatedRoute.paramMap.subscribe(async (paramMap) => {
       this.id = paramMap.get('id');
     });
+
+    // await loading.dismiss();
 
     console.log(this.id);
 
@@ -49,8 +63,13 @@ export class ReserveDetailPage implements OnInit {
       console.log('Detalles del restaurante: ', res);
       this.restaurant = res;
 
-      this.start = this.yelpService.splitTime(this.restaurant.hours[0].open[0].start);
-      this.end = this.yelpService.splitTime(this.restaurant.hours[0].open[0].end);
+      if(this.restaurant.hours) {
+        this.start = this.yelpService.splitTime(this.restaurant?.hours[0]?.open[0]?.start);
+        this.end = this.yelpService.splitTime(this.restaurant?.hours[0]?.open[0]?.end);
+      } else {
+        this.start = '09:00';
+        this.end = '20:00';
+      }
   
       console.log(this.start, this.end);
       if(res) {
@@ -88,5 +107,13 @@ export class ReserveDetailPage implements OnInit {
     });
   }
 
-  
+  async onViewModal(event:any) {
+    const modal = await this.modalController.create({
+      component: '',
+      mode: 'ios',
+      animated: true,
+      componentProps: {}
+    })
+    await modal.present();
+  }
 }

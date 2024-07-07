@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: 'reserves',
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     // loadChildren: () => import('./pages/reserves/reserves.module').then( m => m.ReservesPageModule),
     children: [
       {
@@ -38,6 +38,7 @@ const routes: Routes = [
   },
   {
     path: 'edit-info',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./pages/edit-info/edit-info.module').then( m => m.EditInfoPageModule)
   }
 

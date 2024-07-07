@@ -1,6 +1,7 @@
 <div class="card-container">
   <ion-card *ngFor="let restaurant of restaurants">
-    <img alt="Silhouette of mountains" [src]="restaurant.image_url" />
+    <img alt="Silhouette of mountains" [src]="restaurant.image_url" *ngIf="restaurant.image_url"/>
+    <img *ngIf="!restaurant.image_url" src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="">
     <ion-card-header>
       <ion-card-title>{{restaurant.name}}</ion-card-title>
       <ion-card-subtitle *ngIf="restaurant.is_closed" style="color: red;">CLOSED</ion-card-subtitle>
