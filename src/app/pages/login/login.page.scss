@@ -21,6 +21,17 @@ ion-header {
     }
 }
 
+.ion-checkbox {
+    position: relative;
+    margin-top: 5%;
+    font-size: 17px;
+    right: 26%;
+    color: var(--ion-color-secondary);
+    font-weight: 500;
+    --size: 32px;
+    --checkbox-background-checked: var(--ion-color-secondary);
+}
+
 .form-data {
     position: relative;
     width: 100%;
@@ -50,7 +61,7 @@ ion-header {
     
         .btn-create {
             width: 90%;
-            margin-top: 15%;
+            margin-top: 10%;
         }
     }
 }

@@ -5,11 +5,11 @@
   </ion-buttons>
 </ion-toolbar>
 
-<!-- <ion-toolbar #userLogged *ngIf="!backButton" color="secondary">
+<ion-toolbar #userLogged *ngIf="!backButton" color="secondary">
   <ion-buttons slot="end" >
-    <ion-button> -->
+    <ion-button (click)="onViewOptions($event)">
       <!-- <ion-icon slot="icon-only" name="person-circle" class="icon-contact" size="large"></ion-icon> -->
-      <!-- <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon> 
     </ion-button>
   </ion-buttons>
-</ion-toolbar> -->
+</ion-toolbar>

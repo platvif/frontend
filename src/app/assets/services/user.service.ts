@@ -15,4 +15,8 @@ export class UserService {
     this.current.next(user);
     console.log('this.current.user => ', this.current.value);
   }
+
+  deleteUser(){
+    this.current.next({} as User);
+  }
 }

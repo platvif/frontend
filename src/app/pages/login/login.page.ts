@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/assets/services/authentication.service';
 import { UserService } from 'src/app/assets/services/user.service';
 
@@ -15,11 +15,14 @@ export class LoginPage implements OnInit {
   form!:FormGroup;
   identifier:any;
 
+  rememberMe:boolean = false;
+
   constructor(
     private authService: AuthenticationService,
     private toastController: ToastController,
     private route: Router,
-    private userService: UserService
+    private userService: UserService,
+    private loadingController: LoadingController
   ) {
     this.form = new FormGroup({
       mail: new FormControl('', [Validators.required, Validators.email]),
@@ -27,17 +30,25 @@ export class LoginPage implements OnInit {
     })
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(this.authService.isUserLoged()) {
+      this.onVerifyUserLoged();
+    }
+  }
 
    async onSubmit() {
     if (this.form?.valid) {
       console.log('Formulario Valido: ', this.form?.value);
       try {
-        const login:any = await this.authService.loginUser(this.form?.value);
-        console.log('Usuario Registrado exitosamente!', login);
-        
+        const loading = await this.loadingController.create({
+          message: 'Loading',
+          duration: 1000,
+        });
+        await loading.present();
+        const login:any = await this.authService.loginUser(this.form?.value, this.rememberMe);
+        console.log('Usuario Logueado exitosamente!', login);
         const successToast = await this.toastController.create({
-          message: 'Su usuario se ha logueado con Exito! Bienvenido a PlatVif... 😊',
+          message: 'Your user has logged with success! Enjoy using PlatVif... 😊',
           color: 'secondary',
           duration: 2000,
           animated: true,
@@ -45,13 +56,17 @@ export class LoginPage implements OnInit {
           position: 'middle'
         })
         successToast.present();
+        this.form.reset();
         this.userService.setCurrentUser(login);
-        this.identifier = login;
+
+        // this.identifier = login;
+
         this.route.navigateByUrl('/reserves');
+
       } catch (error) {
         console.error('No se ha podido realizar el login.', error);
         const warningToast = await this.toastController.create({
-          message: 'No se ha podido hacer el logueo con exito, revise sus datos nuevamente... 😪',
+          message: 'login failed, check your information and try again... 😪',
           color: 'danger',
           duration: 3500,
           animated: true,
@@ -71,5 +86,22 @@ export class LoginPage implements OnInit {
       })      
       warningToast.present();
     }
+   }
+
+   async onVerifyUserLoged() {
+    console.log('Verificando si el usuario se encuentra en Local Storage...');
+    const loading = await this.loadingController.create({
+      message: 'Loading',
+      duration: 3000
+    })
+    await loading.present();
+    this.authService.verifyUserLoged().then((user:any) => {
+      console.log('El usuario se encuentra en Local Storage y esta autenticado.');
+      this.userService.setCurrentUser(user);
+      this.route.navigateByUrl('/reserves');
+      loading.dismiss();
+    }).catch(error => {
+      console.log('Error al acceder al usuario en localstorage');
+    })
    }
 }

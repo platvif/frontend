@@ -1,7 +1,7 @@
 <app-toolbar [route]="'/home'" [backButton]="true"></app-toolbar>
 <ion-header>
   <p class="title">Login</p>
-  <p class="description">Logueate para comenzar a utilizar Platvif! 🙌</p>
+  <p class="description">Login to start using PlatVif! 🙌</p>
 </ion-header>
 
 <form class="form-data" [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -10,6 +10,8 @@
     <br>
     <input type="text" placeholder="* * * *" formControlName="pass">
   
+    <ion-checkbox class="ion-checkbox" labelPlacement="end" [(ngModel)]="rememberMe" [ngModelOptions]="{ standalone: true }">Remember me</ion-checkbox>
+
     <ion-button expand="full" color="secondary" shape="round" fill="solid" class="btn-create" type="submit">Crear cuenta</ion-button>
   </div>
 </form>

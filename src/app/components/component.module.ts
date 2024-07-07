@@ -6,6 +6,7 @@ import { RestaurantListComponent } from './restaurant-list/restaurant-list.compo
 import { FilterComponent } from './filter/filter.component';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
 import { RouterModule } from '@angular/router';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { RouterModule } from '@angular/router';
     ToolbarComponent,
     RestaurantListComponent,
     FilterComponent,
-    TypeaheadComponent
+    TypeaheadComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { RouterModule } from '@angular/router';
     ToolbarComponent,
     RestaurantListComponent,
     FilterComponent,
-    TypeaheadComponent
+    TypeaheadComponent,
+    // LogoutComponent
   ]
 })
 export class ComponentModule { }

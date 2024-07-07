@@ -37,7 +37,7 @@ export class RegisterPage implements OnInit {
       })
 
       const successToast = await this.toastController.create({
-        message: 'Su usuario se ha registrado con exito! Dirijase al login para continuar con la operacion 😊',
+        message: 'Your user is registered with success! Now go to the login to start using PlatVif 😊',
         color: 'secondary',
         duration: 3500,
         animated: true,
@@ -48,7 +48,7 @@ export class RegisterPage implements OnInit {
     } else {
       console.log('formulario invalido');
       const warningToast = await this.toastController.create({
-        message: 'No se ha podido realizar el registro, revise los identificadores nuevamente... 😪',
+        message: 'Register failed, check your information and try again... 😪',
         color: 'danger',
         duration: 3500,
         animated: true,

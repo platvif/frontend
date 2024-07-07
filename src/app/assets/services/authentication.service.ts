@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { User } from '../utils/user';
 import { UserService } from './user.service';
 
@@ -14,6 +14,11 @@ export class AuthenticationService {
     private userService: UserService
   ) { }
 
+  // ngOnInit() {
+  //   // this.verifyUserLoged().then((user) {
+
+  //   // })
+  // }
 
   async registerUser(body:any) {
     await this.httpClient.post('http://localhost:3000/api/user/register', body).toPromise()
@@ -24,7 +29,10 @@ export class AuthenticationService {
     })
   }
 
-  async loginUser(body:any) {
+  async loginUser(body:any, rememberMe:boolean) {
+    if(rememberMe) {
+      this.setIdentifier(body);
+    }
     return await this.httpClient.post('http://localhost:3000/api/user/login', body).toPromise();
   }
 
@@ -36,6 +44,28 @@ export class AuthenticationService {
   }
 
   setIdentifier(identifier:any) {
-    window.localStorage.setItem('USER_IDENTIFIER', JSON.stringify(identifier));
+    window.localStorage.setItem('USER_IDENTIFIER', JSON.stringify(identifier.mail));
+    window.localStorage.setItem('USER_PASSWORD', identifier.pass);
+    window.localStorage.setItem('REMEMBER_ME', 'true');
+  }
+
+  verifyUserLoged() {
+    let identifier = JSON.parse(window.localStorage.getItem('USER_IDENTIFIER') || '');
+    let password = window.localStorage.getItem('USER_PASSWORD') ?? '';
+
+    let body = {
+      mail: identifier,
+      pass: password
+    }
+
+    return this.loginUser(body, false);
+  }
+
+  isUserLoged() {
+    return window.localStorage.getItem('REMEMBER_ME');
+  }
+
+  cleanUserLoged() {
+    localStorage.clear();
   }
 }
