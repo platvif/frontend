@@ -21,15 +21,15 @@
             <form class="form-data" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <ion-item class="input">
                   <ion-input labelPlacement="floating" placeholder="Jhon" formControlName="name" [value]="user?.name">
-                    <div slot="label">Nombre <ion-text color="danger">(Required)</ion-text></div>
+                    <div slot="label">Name <ion-text color="danger">(Required)</ion-text></div>
                   </ion-input>
                 </ion-item>
         
                 <ion-item class="input">
                     <ion-input labelPlacement="floating" placeholder="Doe" formControlName="lastname" [value]="user?.lastname">
-                      <div slot="label">Apellido <ion-text color="danger">(Required)</ion-text></div>
+                      <div slot="label">Lastname<ion-text color="danger">(Required)</ion-text></div>
                     </ion-input>
-                  </ion-item>
+                </ion-item>
         
                   <ion-item class="input">
                     <ion-input labelPlacement="floating" placeholder="jhondoe@mail.com" formControlName="mail" [value]="user?.mail">

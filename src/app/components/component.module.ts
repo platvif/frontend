@@ -7,6 +7,8 @@ import { FilterComponent } from './filter/filter.component';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
 import { RouterModule } from '@angular/router';
 import { LogoutComponent } from './logout/logout.component';
+import { FormReserveComponent } from './form-reserve/form-reserve.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,18 +17,22 @@ import { LogoutComponent } from './logout/logout.component';
     RestaurantListComponent,
     FilterComponent,
     TypeaheadComponent,
-    LogoutComponent
+    LogoutComponent,
+    FormReserveComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     ToolbarComponent,
     RestaurantListComponent,
     FilterComponent,
     TypeaheadComponent,
+    FormReserveComponent
     // LogoutComponent
   ]
 })

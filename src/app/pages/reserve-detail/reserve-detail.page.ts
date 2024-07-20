@@ -5,6 +5,7 @@ import { YelpService } from 'src/app/assets/services/yelp.service';
 import { SwiperOptions } from 'swiper/types';
 import * as L from "leaflet";
 import { LoadingController, ModalController } from '@ionic/angular';
+import { FormReserveComponent } from 'src/app/components/form-reserve/form-reserve.component';
 
 @Component({
   selector: 'app-reserve-detail',
@@ -109,10 +110,12 @@ export class ReserveDetailPage implements OnInit {
 
   async onViewModal(event:any) {
     const modal = await this.modalController.create({
-      component: '',
+      component: FormReserveComponent,
       mode: 'ios',
       animated: true,
-      componentProps: {}
+      componentProps: {
+        restaurant: this.restaurant
+      }
     })
     await modal.present();
   }

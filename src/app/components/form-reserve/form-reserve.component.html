@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        Close
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<div class="form">
+    <div class="title-container">
+      <h5 class="title">Make Your Reserve Here! 🙌</h5>
+      <p class="subtitle">Make the reservation in advance before entering the restaurant. 😊</p>
+    </div>
+
+    <div class="form-container">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <ion-button color="secondary" class="btn-complete" (click)="fillFormWithUserInfo()" [disabled]="isFilled">
+            Complete with my information.
+          </ion-button>
+        <ion-item class="input">
+          <!-- formControlName="lastname" [value]="user?.lastname" -->
+          <ion-input labelPlacement="floating" placeholder="Jhon" formControlName="name" [value]="">
+            <div slot="label">Name <ion-text color="danger">(Required)</ion-text></div>
+          </ion-input>
+        </ion-item>
+        <ion-item class="input">
+          <!-- formControlName="lastname" [value]="user?.lastname" -->
+          <ion-input labelPlacement="floating" placeholder="Doe" formControlName="lastname" [value]="">
+            <div slot="label">Lastname <ion-text color="danger">(Required)</ion-text></div>
+          </ion-input>
+        </ion-item>
+        <ion-item class="input">
+          <!-- formControlName="lastname" [value]="user?.lastname" -->
+          <ion-input labelPlacement="floating" placeholder="jhondoe@mail.com" formControlName="mail" [value]="">
+            <div slot="label">Mail <ion-text color="danger">(Required)</ion-text></div>
+          </ion-input>
+        </ion-item>
+        <ion-item class="input">
+          <!-- formControlName="lastname" [value]="user?.lastname" -->
+          <ion-input labelPlacement="floating" placeholder="1112345678" formControlName="phone" [value]="">
+            <div slot="label">Phone <ion-text color="danger">(Required)</ion-text></div>
+          </ion-input>
+        </ion-item>
+        <ion-item class="input">
+          <!-- formControlName="lastname" [value]="user?.lastname" -->
+          <ion-input type="date" labelPlacement="floating" placeholder="dd/mm/yy" formControlName="date" [value]="">
+            <div slot="label">Date <ion-text color="danger">(Required)</ion-text></div>
+          </ion-input>
+        </ion-item>
+        <ion-item class="input">
+          <!-- formControlName="lastname" [value]="user?.lastname" -->
+          <ion-input type="time" labelPlacement="floating" placeholder="hh:mm" formControlName="hour" [value]="">
+            <div slot="label">Hour <ion-text color="danger">(Required)</ion-text></div>
+          </ion-input>
+        </ion-item>
+        <ion-item class="input">
+          <!-- formControlName="lastname" [value]="user?.lastname" -->
+          <ion-input type="number" labelPlacement="floating" placeholder="0" formControlName="people" [value]="">
+            <div slot="label">Many People <ion-text color="danger">(Required)</ion-text></div>
+          </ion-input>
+        </ion-item>
+        <ion-button color="secondary" expand="block" class="btn-submit" type="submit">
+          Make reserve
+      </ion-button>
+      </form>
+    </div>
+</div>
